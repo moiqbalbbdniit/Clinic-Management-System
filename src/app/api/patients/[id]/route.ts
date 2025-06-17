@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/db";
-import { PatientModel } from "@/lib/model/patients";
+import { PatientModel } from "@/lib/model/Patients";
 
 /**
  * GET /api/patients/[id]
