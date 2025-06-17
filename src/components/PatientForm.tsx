@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import axios from "axios";
 import type { PatientType } from "@/lib/types";
 import { toast } from "sonner";
-import { CheckCircle, XCircle } from "lucide-react";
+import {  XCircle } from "lucide-react";
 
 export default function PatientForm({
   initialData,
@@ -38,11 +38,11 @@ export default function PatientForm({
     }
   }, [initialData]);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {

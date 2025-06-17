@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Printer, Eye } from "lucide-react";
+import { PatientType } from "@/lib/types";
 
-export default function PatientCard({ patient }: { patient: any }) {
+export default function PatientCard({ patient }: { patient: PatientType }) {
   const handlePrint = () => {
     window.open(`/print/${patient._id}`, "_blank");
   };
