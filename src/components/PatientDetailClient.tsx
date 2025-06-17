@@ -51,6 +51,7 @@ export default function PatientDetailClient({ id }: { id: string }) {
       toast.success("Patient deleted successfully");
       router.push("/search");
     } catch (err) {
+      console.error("❌ Error deleting patient:", err);
       toast.error("Failed to delete patient");
     }
   };
