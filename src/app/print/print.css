@@ -1,0 +1,33 @@
+/* app/print/print.css */
+@media print {
+  body {
+    padding: 20px;
+    background: white;
+    color: black;
+  }
+
+  header, footer, .no-print {
+    display: none !important;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f0f0f0;
+  }
+}
+
+@media print {
+  header, footer, .no-print {
+    display: none !important;
+  }
+  /* ... other print specific styles ... */
+}
