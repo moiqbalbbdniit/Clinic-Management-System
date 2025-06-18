@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import PatientCard from "@/components/PatientCard";
 import SearchBar from "@/components/SearchBar";
 import type { PatientType } from "@/lib/types";
@@ -16,21 +17,14 @@ export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchPatients = async () => {
-      try {
-        const res = await axios.get("/api/patients");
-        setAllPatients(res.data);
-        setDisplayedPatients(res.data.slice(0, BATCH_SIZE));
-      } catch (error) {
-        console.error("Error fetching patients:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPatients();
+    axios.get("/api/patients").then((res) => {
+      setAllPatients(res.data);
+      setDisplayedPatients(res.data.slice(0, BATCH_SIZE));
+      setLoading(false);
+    });
   }, []);
 
   const handleSearch = (query: string) => {
@@ -62,7 +56,12 @@ export default function SearchPage() {
 
   return (
     <main className="p-6 max-w-6xl mx-auto space-y-6">
-      <h1 className="text-3xl font-bold text-center">Search Patients by name, mobile number</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold text-center w-full">Search Patients</h1>
+        <Button className="ml-auto" onClick={() => router.push("/")}>
+          Return to Add Patient
+        </Button>
+      </div>
 
       <SearchBar onSearch={handleSearch} />
 
