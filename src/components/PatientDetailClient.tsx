@@ -32,6 +32,7 @@ export default function PatientDetailClient() {
       setPatient(resPatient.data);
       setPayments(resPayments.data);
     } catch (err) {
+      console.error("Error fetching patient details:", err);
       toast.error("Failed to load data");
     } finally {
       setLoading(false);
@@ -46,6 +47,7 @@ export default function PatientDetailClient() {
       toast.success("Deleted successfully");
       router.push("/search");
     } catch (err) {
+      console.error("Error deleting patient:", err);
       toast.error("Delete failed");
     }
   };
