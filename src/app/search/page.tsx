@@ -6,6 +6,7 @@ import PatientCard from "@/components/PatientCard";
 import SearchBar from "@/components/SearchBar";
 import type { PatientType } from "@/lib/types";
 import { Button } from "@/components/ui/button";
+import DoctorLoader from "@/components/Loader";
 
 const BATCH_SIZE = 20;
 
@@ -14,12 +15,22 @@ export default function SearchPage() {
   const [displayedPatients, setDisplayedPatients] = useState<PatientType[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(BATCH_SIZE);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("/api/patients").then((res) => {
-      setAllPatients(res.data);
-      setDisplayedPatients(res.data.slice(0, BATCH_SIZE));
-    });
+    const fetchPatients = async () => {
+      try {
+        const res = await axios.get("/api/patients");
+        setAllPatients(res.data);
+        setDisplayedPatients(res.data.slice(0, BATCH_SIZE));
+      } catch (error) {
+        console.error("Error fetching patients:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPatients();
   }, []);
 
   const handleSearch = (query: string) => {
@@ -46,6 +57,8 @@ export default function SearchPage() {
     p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     p.mobile.includes(searchQuery)
   ).length > displayedPatients.length;
+
+  if (loading) return <DoctorLoader />;
 
   return (
     <main className="p-6 max-w-6xl mx-auto space-y-6">
