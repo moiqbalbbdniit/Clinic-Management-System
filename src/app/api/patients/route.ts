@@ -6,12 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 
 // --- Utility function to extract ID from URL (remains unchanged) ---
-function getIdFromUrl(req: NextRequest): string | null {
-  const url = new URL(req.url);
-  const pathname = url.pathname;
-  const match = pathname.match(/\/api\/patients\/([^\/\?]+)/);
-  return match?.[1] || null;
-}
+
 
 // --- POST /api/patients (remains unchanged) ---
 export async function POST(req: NextRequest) {
@@ -32,7 +27,7 @@ export async function GET(req: NextRequest) {
     const monthParam = searchParams.get("month");
     const yearParam = searchParams.get("year");
 
-    let matchQuery: mongoose.FilterQuery<PatientType> = {}; // Initialize empty match query
+    const matchQuery: mongoose.FilterQuery<PatientType> = {}; // Initialize empty match query
 
     // 1. Implement filtering by month and year for patients' 'dateOfVisit'
     if (monthParam && yearParam) {

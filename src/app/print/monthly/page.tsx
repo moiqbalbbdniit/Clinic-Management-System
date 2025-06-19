@@ -8,6 +8,7 @@ import autoTable from "jspdf-autotable";
 import { Button } from "@/components/ui/button";
 import DoctorLoader from "@/components/Loader";
 import { toast, Toaster } from "sonner"; // Import toast and Toaster
+import { PatientType, PaymentType } from "@/lib/types";
 
 // Assuming your PatientType and PaymentType are defined in '@/lib/types'
 // Make sure PaymentType includes an 'amount' property
@@ -28,7 +29,7 @@ import { toast, Toaster } from "sonner"; // Import toast and Toaster
 export default function PrintByMonthPage() {
   const [month, setMonth] = useState<string>("");
   const [year, setYear] = useState<string>(String(new Date().getFullYear()));
-  const [patients, setPatients] = useState<any[]>([]);
+  const [patients, setPatients] = useState<PatientType[]>([]);
   const [loading, setLoading] = useState(false);
   const [readyToPrint, setReadyToPrint] = useState(false);
 
@@ -58,7 +59,7 @@ export default function PrintByMonthPage() {
 
   const handleDownloadPDF = () => {
     // Change: Initialize jsPDF with 'landscape' orientation
-    const doc = new jsPDF('p', 'mm', 'a4'); // 'p' for portrait, 'mm' for millimeters, 'a4' for paper size. Default is portrait.
+   
 
     // To make it landscape, use 'l' instead of 'p'
     const doc_landscape = new jsPDF('l', 'mm', 'a4');
@@ -83,7 +84,7 @@ export default function PrintByMonthPage() {
         ["#", "Name", "Mobile", "Address", "Disease", "Total Cost (₹)", "Paid (₹)", "Balance (₹)"]
       ],
       body: patients.map((p, index) => {
-        const totalPaid = p.payments?.reduce((sum: number, pay: any) => sum + pay.amount, 0) || 0;
+        const totalPaid = p.payments?.reduce((sum: number, pay: PaymentType) => sum + pay.amount, 0) || 0;
         const balance = p.totalCost - totalPaid;
 
         return [

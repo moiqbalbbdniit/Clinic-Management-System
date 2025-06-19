@@ -6,6 +6,7 @@ export interface PatientType {
   disease: string;
   totalCost: number;
   dateOfVisit: string;
+  payments?: PaymentType[]; // Optional, if you want to include payment details
   __v?: number;
 }
 
