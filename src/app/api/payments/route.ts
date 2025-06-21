@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     const newPayment = await PaymentModel.create({
       patientId: body.patientId,
       amount: body.amount,
-      date: new Date(), // or: body.date if passed manually
+      date: body.date ? new Date(body.date) : new Date()
     });
 
     return NextResponse.json(newPayment, { status: 201 });

@@ -5,9 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import axios from "axios";
-import type { PatientType } from "@/lib/types";
 import { toast } from "sonner";
-import {  XCircle } from "lucide-react";
+import { XCircle, CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { cn } from "@/lib/utils";
+import type { PatientType } from "@/lib/types";
 
 export default function PatientForm({
   initialData,
@@ -26,6 +30,8 @@ export default function PatientForm({
     totalCost: "",
   });
 
+  const [admissionDate, setAdmissionDate] = useState<Date | undefined>(new Date());
+
   useEffect(() => {
     if (initialData) {
       setForm({
@@ -35,6 +41,7 @@ export default function PatientForm({
         disease: initialData.disease,
         totalCost: initialData.totalCost.toString(),
       });
+      setAdmissionDate(new Date(initialData.dateOfVisit));
     }
   }, [initialData]);
 
@@ -46,18 +53,17 @@ export default function PatientForm({
     e.preventDefault();
 
     try {
-      if (patientId) {
-        await axios.put(`/api/patients/${patientId}`, {
-          ...form,
-          totalCost: parseInt(form.totalCost),
-        });
-        toast.success("Patient updated successfully");
+      const payload = {
+        ...form,
+        totalCost: parseInt(form.totalCost),
+        dateOfVisit: admissionDate,
+      };
 
+      if (patientId) {
+        await axios.put(`/api/patients/${patientId}`, payload);
+        toast.success("Patient updated successfully");
       } else {
-        await axios.post("/api/patients", {
-          ...form,
-          totalCost: parseInt(form.totalCost),
-        });
+        await axios.post("/api/patients", payload);
         toast.success("Patient added successfully");
       }
 
@@ -69,6 +75,7 @@ export default function PatientForm({
         disease: "",
         totalCost: "",
       });
+      setAdmissionDate(new Date());
     } catch (err) {
       console.error("Submit failed", err);
       toast.error(
@@ -87,41 +94,34 @@ export default function PatientForm({
           {patientId ? "Edit Patient" : "Add New Patient"}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <Input
-            name="name"
-            placeholder="Name"
-            value={form.name}
-            onChange={handleChange}
-            required
-          />
-          <Input
-            name="address"
-            placeholder="Address"
-            value={form.address}
-            onChange={handleChange}
-            required
-          />
-          <Input
-            name="mobile"
-            placeholder="Mobile"
-            value={form.mobile}
-            onChange={handleChange}
-            required
-          />
-          <Input
-            name="disease"
-            placeholder="Disease"
-            value={form.disease}
-            onChange={handleChange}
-            required
-          />
-          <Input
-            name="totalCost"
-            placeholder="Total Cost"
-            value={form.totalCost}
-            onChange={handleChange}
-            required
-          />
+          <Input name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
+          <Input name="address" placeholder="Address" value={form.address} onChange={handleChange} required />
+          <Input name="mobile" placeholder="Mobile" value={form.mobile} onChange={handleChange} required />
+          <Input name="disease" placeholder="Disease" value={form.disease} onChange={handleChange} required />
+          <Input name="totalCost" placeholder="Total Cost" value={form.totalCost} onChange={handleChange} required />
+
+          {/* Calendar for admission date */}
+          <div>
+            <label className="text-sm font-medium text-gray-600">Admission Date</label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  className={cn(
+                    "w-full justify-start text-left font-normal",
+                    !admissionDate && "text-muted-foreground"
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {admissionDate ? format(admissionDate, "PPP") : <span>Select date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar mode="single" selected={admissionDate} onSelect={setAdmissionDate} initialFocus />
+              </PopoverContent>
+            </Popover>
+          </div>
+
           <Button type="submit" className="w-full">
             {patientId ? "Update Patient" : "Add Patient"}
           </Button>

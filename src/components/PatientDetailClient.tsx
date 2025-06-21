@@ -75,6 +75,9 @@ export default function PatientDetailClient() {
             <Button variant="destructive" onClick={handleDelete}>
               Delete
             </Button>
+            <Button className="ml-auto" onClick={() => router.push("/")}>
+                      Return to Add Patient
+                    </Button>
           </div>
         </div>
 
@@ -96,6 +99,7 @@ export default function PatientDetailClient() {
             <p><strong>Total Cost:</strong> ₹{patient.totalCost}</p>
             <p><strong>Total Paid:</strong> ₹{totalPaid}</p>
             <p><strong>Balance:</strong> ₹{balance}</p>
+            <p><strong>Admission Date:</strong> {dayjs(patient.dateOfVisit).format("DD-MM-YYYY")}</p> {/* ✅ New line */}
           </Card>
         )}
 

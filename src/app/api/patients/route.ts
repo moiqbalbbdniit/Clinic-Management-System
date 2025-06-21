@@ -14,7 +14,11 @@ export async function POST(req: NextRequest) {
   const data = await req.json();
   // Ensure dateOfVisit is set when creating a new patient
   // Assuming PatientModel schema has 'dateOfVisit: { type: Date, default: Date.now }'
-  const patient = await PatientModel.create({ ...data, dateOfVisit: new Date() });
+  const patient = await PatientModel.create({
+  ...data,
+  dateOfVisit: data.dateOfVisit ? new Date(data.dateOfVisit) : new Date(),
+});
+
   return NextResponse.json(patient);
 }
 
