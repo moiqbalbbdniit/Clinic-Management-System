@@ -26,7 +26,7 @@ export default function Navbar() {
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">
-                Dr. Abhijit Kumar Vishwas
+                Dr. Abhijit Kumar
               </h1>
               <p className="text-xs text-teal-800 font-bold">
                 Obonti Piles Clinic – Patient Management System

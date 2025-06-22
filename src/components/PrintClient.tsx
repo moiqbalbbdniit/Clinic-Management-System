@@ -35,7 +35,7 @@ export default function PrintClient() {
       {/* content same as before */}
       <div className="text-center mb-4">
         <h1 className="text-2xl font-bold text-teal-700">Obonti Piles Clinic</h1>
-        <p className="font-medium">Dr. Abhijit Kumar Vishwas</p>
+        <p className="font-medium">Dr. Abhijit Kumar</p>
         <p className="text-xs">{new Date().toLocaleDateString("en-IN")}</p>
         <hr className="my-2 border-gray-400" />
       </div>

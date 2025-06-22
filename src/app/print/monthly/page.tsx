@@ -82,7 +82,7 @@ const router = useRouter();
     doc_landscape.setFontSize(12);
     doc_landscape.setTextColor(0, 0, 0); // Black
     doc_landscape.text(
-      `Dr. Abhijit Kumar Vishwas`,
+      `Dr. Abhijit Kumar`,
       doc_landscape.internal.pageSize.width / 2,
       22,
       { align: "center" }
