@@ -57,7 +57,7 @@ export default function PrintClient() {
         ) : (
           <table className="w-full border border-gray-300 text-sm">
             <thead>
-              <tr className="bg-gray-200">
+              <tr className="bg-teal-200">
                 <th className="border px-2 py-1">#</th>
                 <th className="border px-2 py-1">Date</th>
                 <th className="border px-2 py-1">Amount (₹)</th>
