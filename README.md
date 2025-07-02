@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="center" id="title">🏥 Clinic Management System</h1>
 
-## Getting Started
+<p id="description">The Clinic Management System is a full-stack web application designed to simplify daily operations in clinics. It enables doctors to efficiently manage patient records schedule appointments track payments and generate print-ready reports — all through a modern responsive interface. This project is built using Next.js 14 for the frontend and backend MongoDB for the database and styled with Tailwind CSS and Shadcn UI components. Clerk is used for secure and modern authentication. It is designed with performance accessibility and a clean user experience in mind — perfect for solo practitioners or small to medium-sized clinics.</p>
 
-First, run the development server:
+<p align="center"><img src="https://img.shields.io/badge/Next.js-000?style=for-the-badge&amp;logo=next.js&amp;logoColor=white)" alt="shields"><img src="https://img.shields.io/badge/MongoDB-4DB33D?style=for-the-badge&amp;logo=mongodb&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&amp;logo=tailwind-css&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/Shadcn_UI-000?style=for-the-badge&amp;logo=react&amp;logoColor=white" alt="shields"><img src="https://img.shields.io/badge/Clerk_Auth-F44250?style=for-the-badge&amp;logo=clerk&amp;logoColor=white" alt="shields"></p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+<h2>🚀 Demo</h2>
+
+[https://drabhi.netlify.app/](https://drabhi.netlify.app/)
+
+  
+  
+<h2>🧐 Features</h2>
+
+Here're some of the project's best features:
+
+*   Secure login system powered by Clerk for managing access.
+*   Add edit view and delete patient records with ease.
+*   Schedule and manage patient appointments using date and time selectors.
+*   Record patient payments and filter payment history by month.
+*   Generate clean professional-looking reports for patients with a dedicated \`/print/\[id\]\` route that excludes unnecessary UI elements.
+*   View quick stats for total patients appointments and billing.
+*   Fully optimized for all devices with a mobile-first layout.
+*   Built with reusable components and consistent UI using Shadcn + Tailwind CSS.
+*   Feedback and alerts using Sonner toast notifications.
+*   Clean folder structure and modular codebase for easy expansion.
+
+<h2>🛠️ Installation Steps:</h2>
+
+<p>1. Clone the repository</p>
+
+```
+git clone https://github.com/yourusername/clinic-management-system.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<p>2. Navigate to the project directory bash Copy Edit</p>
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+cd clinic-management-system
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<p>3. Install dependencies</p>
 
-## Learn More
+```
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+<p>4. Set up environment variables</p>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+MONGODB_URI=your_mongodb_connection_string CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key CLERK_SECRET_KEY=your_clerk_secret_key NEXT_PUBLIC_CLERK_FRONTEND_API=your_clerk_frontend_api NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<p>5. Run the development server</p>
 
-## Deploy on Vercel
+```
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  
+  
+<h2>💻 Built with</h2>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Technologies used in the project:
+
+*   Nextjs
+*   TailwindCSS
+*   Clerk
+*   ShadcnUI
+*   MongoDB
+*   Lucide-React Icon
+*   Day.js
+*   TypeScript
+*   Netlify
+
+<h2>🛡️ License:</h2>
+
+This project is licensed under the MIT
