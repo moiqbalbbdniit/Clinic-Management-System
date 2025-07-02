@@ -6,7 +6,11 @@
     color: black;
   }
 
-  header, footer, .no-print {
+  header,
+  footer,
+  .no-print,
+  .toaster,
+  nav {
     display: none !important;
   }
 
@@ -23,11 +27,14 @@
   th {
     background-color: #f0f0f0;
   }
-}
 
-@media print {
-  header, footer, .no-print {
-    display: none !important;
+  @page {
+    size: A4;
+    margin: 20mm;
   }
-  /* ... other print specific styles ... */
+}
+@media print {
+  body {
+    border: 5px dashed red;
+  }
 }

@@ -148,3 +148,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@media print {
+  footer {
+    display: none !important;
+  }
+
+  
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+}

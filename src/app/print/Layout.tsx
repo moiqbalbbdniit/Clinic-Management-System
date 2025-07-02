@@ -2,10 +2,10 @@
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
 // IMPORTANT: Remove or comment out the import for globals.css
-// import "../globals.css"; // <-- This line should be removed or commented out
+import "../globals.css"; // <-- This line should be removed or commented out
 
 // Import your print-specific CSS file
-import "./print.css";
+// import "./print.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
