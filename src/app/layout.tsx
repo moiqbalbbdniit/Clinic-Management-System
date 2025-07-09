@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { ClerkProvider } from '@clerk/nextjs';
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
